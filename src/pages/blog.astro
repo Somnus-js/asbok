@@ -1,0 +1,18 @@
+---
+import BlogPost from "../components/BlogPost.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/global.css";
+const allPosts = await Astro.glob("./posts/*.md");
+---
+
+<BaseLayout>
+  <h1>我的 Astro 学习博客</h1>
+  <p>这是我的 Astro 学习笔记</p>
+  <ul>
+    {
+      allPosts.map((post) => (
+        <BlogPost url={post.url} title={post.frontmatter.title} />
+      ))
+    }
+  </ul>
+</BaseLayout>
